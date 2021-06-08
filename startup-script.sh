@@ -1,4 +1,7 @@
 #!/bin/sh
-/mnt/tank/systems/scripts/esxi-rescan-datastores.sh
-/mnt/tank/systems/scripts/esxi-start-datastore-vms.sh
+
+mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
+
+"$mypath"/rescan-datastores.sh
+"$mypath"/start-datastore-vms.sh
 

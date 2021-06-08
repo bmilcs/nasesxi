@@ -1,13 +1,9 @@
 #!/bin/sh
-################################################################################
-#
 # Command-line parameters: --none--
-#
 # Forces a FreeNAS VM's ESXi host to rescan its datastores
-#
-################################################################################
 
-. "$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"/host.config
+mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
+. "$mypath"/host.config
 
 logfile="${logdir}/esxi-rescan-datastores.log"
 
