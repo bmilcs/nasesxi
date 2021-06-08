@@ -7,9 +7,9 @@
 #
 ################################################################################
 
-. /mnt/tank/systems/scripts/host.config
+. "$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"/host.config
 
-logfile=${logdir}/esxi-rescan-datastores.log
+logfile="${logdir}/esxi-rescan-datastores.log"
 
 echo "$(date): Forcing datastore rescan on ESXi host ${esxihost}" | tee -a "${logfile}"
 
