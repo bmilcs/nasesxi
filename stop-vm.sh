@@ -1,10 +1,8 @@
 #!/bin/sh
-################################################################################
+# command-line parameters: user_id esxi_host_name vmx_base_filename
 #
-# Command-line parameters: user_id esxi_host_name vmx_base_filename
-#
-# Stop guest virtual machine with vmx file (vmx_base_filename'.vmx') on remote
-# VMware ESXi server (esxi_host_name) using given user credentials (user_id)
+# stop guest virtual machine with vmx file (vmx_base_filename'.vmx') on remote
+# vmware esxi server (esxi_host_name) using given user credentials (user_id)
 #
 ################################################################################
 
@@ -17,7 +15,9 @@ if [ $# -ne 3 ]; then
   exit 1
 fi
 
-. /mnt/tank/systems/scripts/esxi.config
+mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
+. "$mypath"/esxi.config
+
 
 # Gather command-line arguments for user ID, hostname, and datastore name:
 
