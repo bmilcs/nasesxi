@@ -1,23 +1,17 @@
 #!/bin/sh
-# Command-line parameters: user_id esxi_host_name vmx_base_filename
-#
-# Starts guest virtual machine with vmx file (vmx_base_filename'.vmx') on remote
-# VMware ESXi server (esxi_host_name) using given user credentials (user_id)
 
-# check for invocation errors
+mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
+. "$mypath"/host.config
+. "$mypath"/esxi.config
 
-if [ $# -ne 3 ]; then
-  echo "$0: error! Not enough arguments"
+if [ $# -ne 1 ]; then
+  echo "$0: error! 1 arg only"
   echo "Usage is: $0 user_id esxi_host_name vmx_filename"
   echo "Only specify the vmx basefilename; leave off the '.vmx' extension"
   exit 1
 fi
 
-# gather command-line arguments for user id, hostname, and datastore name:
-
-esxiuser=$1
-esxihost=$2
-vmxname=$3
+vmxname=$1
 
 # get server id for the vm with matching vmx file:
 

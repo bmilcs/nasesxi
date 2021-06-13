@@ -5,7 +5,7 @@
 mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
 . "$mypath"/host.config
 
-logfile="${logdir}/esxi-rescan-datastores.log"
+logfile="${logdir}/rescan-datastores.log"
 
 echo "$(date): Forcing datastore rescan on ESXi host ${esxihost}" | tee -a "${logfile}"
 
