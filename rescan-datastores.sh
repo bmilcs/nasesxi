@@ -1,9 +1,16 @@
 #!/bin/sh
+#  ▄▄▄▄· • ▌ ▄ ·. ▪  ▄▄▌   ▄▄· .▄▄ ·   ──────────────────────
+#  ▐█ ▀█▪·██ ▐███▪██ ██•  ▐█ ▌▪▐█ ▀.   ╔╦╗╔═╗╔╦╗╔═╗╦╦  ╔═╗╔═╗
+#  ▐█▀▀█▄▐█ ▌▐▌▐█·▐█·██ ▪ ██ ▄▄▄▀▀▀█▄   ║║║ ║ ║ ╠╣ ║║  ║╣ ╚═╗
+#  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
+#  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
+#                 ESXI RESCAN DATASTORES [./rescan-datastores.sh]
+#────────────────────────────────────────────────────────────
 # Command-line parameters: --none--
 # Forces a FreeNAS VM's ESXi host to rescan its datastores
 
 mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-. "$mypath"/host.config
+. "$mypath"/config
 
 logfile="${logdir}/rescan-datastores.log"
 

@@ -1,4 +1,11 @@
 #!/bin/sh
+#  ▄▄▄▄· • ▌ ▄ ·. ▪  ▄▄▌   ▄▄· .▄▄ ·   ──────────────────────
+#  ▐█ ▀█▪·██ ▐███▪██ ██•  ▐█ ▌▪▐█ ▀.   ╔╦╗╔═╗╔╦╗╔═╗╦╦  ╔═╗╔═╗
+#  ▐█▀▀█▄▐█ ▌▐▌▐█·▐█·██ ▪ ██ ▄▄▄▀▀▀█▄   ║║║ ║ ║ ╠╣ ║║  ║╣ ╚═╗
+#  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
+#  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
+#                 ESXI STOP VMS [./stop-vm.sh]
+#────────────────────────────────────────────────────────────
 # command-line parameters: user_id esxi_host_name vmx_base_filename
 #
 # stop guest virtual machine with vmx file (vmx_base_filename'.vmx') on remote
@@ -16,14 +23,10 @@ if [ $# -ne 3 ]; then
 fi
 
 mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-. "$mypath"/esxi.config
+. "$mypath"/config
 
 
-# Gather command-line arguments for user ID, hostname, and datastore name:
-
-esxiuser=$1
-esxihost=$2
-vmxname=$3
+vmxname=$1
 
 guestvmids=$(ssh "${esxiuser}"@"${esxihost}" vim-cmd vmsvc/getallvms | grep "/${vmxname}.vmx" | awk '$1 ~ /^[0-9]+$/ {print $1}')
 

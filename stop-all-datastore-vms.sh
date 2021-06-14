@@ -1,9 +1,11 @@
 #!/bin/sh
-# Command-line parameters: user_id esxi_host_name datastore_name
-# Gracefully powers down all guest virtual machines in a particular datastore (datastore_name)
-# on remote VMware ESXi server (esxi_host_name) using given user credentials (user_id).
-
-# Check for invocation errors
+#  ▄▄▄▄· • ▌ ▄ ·. ▪  ▄▄▌   ▄▄· .▄▄ ·   ──────────────────────
+#  ▐█ ▀█▪·██ ▐███▪██ ██•  ▐█ ▌▪▐█ ▀.   ╔╦╗╔═╗╔╦╗╔═╗╦╦  ╔═╗╔═╗
+#  ▐█▀▀█▄▐█ ▌▐▌▐█·▐█·██ ▪ ██ ▄▄▄▀▀▀█▄   ║║║ ║ ║ ╠╣ ║║  ║╣ ╚═╗
+#  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
+#  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
+#                 ESXI STOP ALL DATASTORE VMS [./stop-all-datastore-vms.sh]
+#────────────────────────────────────────────────────────────
 
 if [ $# -ne 3 ]; then
   echo "$0: error! Not enough arguments"
@@ -11,19 +13,13 @@ if [ $# -ne 3 ]; then
   exit 1
 fi
 
+#────────────────────────────────────────────────────────────────  var  ───────
+
 
 mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-. "$mypath"/esxi.config
+. "$mypath"/config
 
-# Gather command-line arguments for user ID, hostname, and datastore name:
-
-esxiuser=$1
-esxihost=$2
-
-# ESXi datastore must be uppercase:
-#esxidatastore=$(echo "$3" | tr '[:lower:]' '[:upper:]')
-#November 2020: no longer seems to be the case, just assign the user's datastore name 'as is':
-esxidatastore=$3
+esxidatastore=$1
 
 #──────────────────────────────────────────────────────────────  begin  ───────
 

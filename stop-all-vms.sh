@@ -1,9 +1,16 @@
 #!/bin/sh
-# Command-line parameters: --none--
-# Gracefully powers down all guest virtual machines in the FreeNAS datastores
+#  ▄▄▄▄· • ▌ ▄ ·. ▪  ▄▄▌   ▄▄· .▄▄ ·   ──────────────────────
+#  ▐█ ▀█▪·██ ▐███▪██ ██•  ▐█ ▌▪▐█ ▀.   ╔╦╗╔═╗╔╦╗╔═╗╦╦  ╔═╗╔═╗
+#  ▐█▀▀█▄▐█ ▌▐▌▐█·▐█·██ ▪ ██ ▄▄▄▀▀▀█▄   ║║║ ║ ║ ╠╣ ║║  ║╣ ╚═╗
+#  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
+#  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
+#                 ESXI STOP ALL VMS [./stop-all-vms.sh]
+#────────────────────────────────────────────────────────────
+
+# gracefully powers down all guest virtual machines in the freenas datastores
 
 mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-. "$mypath"/host.config
+. "$mypath"/config
 
 logfile="${logdir}"/esxi-stop-all-vms.log
 

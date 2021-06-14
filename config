@@ -1,54 +1,47 @@
-################################################################################
-################################################################################
-#
-# Common code for ESXi support
-#
-################################################################################
-################################################################################
+#  ▄▄▄▄· • ▌ ▄ ·. ▪  ▄▄▌   ▄▄· .▄▄ ·   ──────────────────────
+#  ▐█ ▀█▪·██ ▐███▪██ ██•  ▐█ ▌▪▐█ ▀.   ╔╦╗╔═╗╔╦╗╔═╗╦╦  ╔═╗╔═╗
+#  ▐█▀▀█▄▐█ ▌▐▌▐█·▐█·██ ▪ ██ ▄▄▄▀▀▀█▄   ║║║ ║ ║ ╠╣ ║║  ║╣ ╚═╗
+#  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
+#  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
+#                 ESXI VARIABLES & CONFIG [./esxi.config]
 
-###############################
-# Define variables used later #
-###############################
+# script path
+mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
 
-# user and host:
-
+# core vars
+freenashost=$(hostname -s)
 esxiuser="root"
 esxihost="esxi"
+esxihost=esxi
+esxiuser=root
+datastores="ESXI NVR"
+logdir="$mypath/logs/"
+mkdir -p "$logdir"
 
-# Record keeping:
-
+# record keeping:
 totalvms=0
 totalvmsshutdown=0
 totalvmspowereddown=0
 
-##########################################################
-# Edit these settings to suit your needs and environment #
-##########################################################
-
-# Test flag: set to 1 to prevent the script from shutting VM guests down.
+# 0=off, 1=on
 dryrun=0
 
-# waitretries determines how many times the script will loop while attempting to power down a VM.
-# waitdelay specifies how many seconds to sleep during each loop.
-
+# waitretries: how many times script loops while attempting VM power down
 waitretries=30
+
+# waitdelay: seconds to sleep during each loop
 waitdelay=6
 
-# maxwait is the product of waitretries and waitdelay, i.e., the total number of seconds we will
-# wait before gracelessly forcing the power off.
-
+# maxwait: seconds wait before brute forcing power off "product:retries/delay"
 maxwait=$((waitretries*waitdelay))
 
-# For tests, force the retry max count to 1
+# test run: retry once
 if [ $dryrun -ne 0 ]; then
   waitretries=1
 fi
 
-################################################################################
-#
-# Function to shut down a guest virtual machine
-#
-################################################################################
+
+#──────────────────────────────────────────────────────────  functions  ───────
 
 shutdown_guest_vm()
 {
@@ -95,3 +88,23 @@ shutdown_guest_vm()
     fi
   fi
 }
+
+#────────────────────────────────────────────────────────  unnecessary  ───────
+
+# multiple hosts:
+# if [ "${freenashost}" = "freenas" ] || \
+#    [ "${freenashost}" = "truenas" ] || \
+#    [ "${freenashost}" = "naswww" ]; then
+#
+#   esxihost=esxi
+#   esxiuser=root
+#   datastores="ESXI NVR"
+#   logdir="$mypath/logs/"
+#   mkdir -p "$logdir"
+#
+# else 
+# 
+#   echo "Undefined system!"
+#   exit 1
+# 
+# fi
