@@ -2,14 +2,13 @@
 
 mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
 . "$mypath"/host.config
-. "$mypath"/esxi.config
 
-is_active=0
+#is_active=0
 logfile="${logdir}/start-datastore-vms.log"
 waitdelay=30
 
-if [ $is_active -ne 0 ]; then
-  echo "Pausing $waitdelay seconds before starting virtual machines..." >> $logfile
+#if [ $is_active -ne 0 ]; then
+  echo "Pausing $waitdelay seconds before starting virtual machines..." >> "$logfile"
   sleep $waitdelay
   
     "$mypath"/start-vm.sh Docker >> "$logfile"
@@ -19,5 +18,5 @@ if [ $is_active -ne 0 ]; then
     "$mypath"/start-vm.sh Security  >> "$logfile"
     "$mypath"/start-vm.sh UNMS  >> "$logfile"
     "$mypath"/start-vm.sh Backup  >> "$logfile"
-fi
+#fi
 
