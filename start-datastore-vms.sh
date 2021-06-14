@@ -12,9 +12,12 @@ waitdelay=30
   sleep $waitdelay
   
     "$mypath"/start-vm.sh Docker >> "$logfile"
+    "$mypath"/start-vm.sh Plex  >> "$logfile"
+    "$mypath"/start-vm.sh mPi >> "$logfile"
+    "$mypath"/start-vm.sh kPi >> "$logfile"
+    "$mypath"/start-vm.sh MPD >> "$logfile"
     "$mypath"/start-vm.sh DC1  >> "$logfile"
     "$mypath"/start-vm.sh Guacamole  >> "$logfile"
-    "$mypath"/start-vm.sh Plex  >> "$logfile"
     "$mypath"/start-vm.sh Security  >> "$logfile"
     "$mypath"/start-vm.sh UNMS  >> "$logfile"
     "$mypath"/start-vm.sh Backup  >> "$logfile"
