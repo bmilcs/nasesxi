@@ -15,7 +15,7 @@
 
 # Check for invocation errors
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 1 ]; then
   echo "$0: error! Not enough arguments"
   echo "Usage is: $0 user_id esxi_host_name vmx_filename"
   echo "Only specify the vmx basefilename; leave off the '.vmx' extension"
@@ -25,7 +25,7 @@ fi
 mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
 . "$mypath"/config
 
-
+set -x
 vmxname=$1
 
 guestvmids=$(ssh "${esxiuser}"@"${esxihost}" vim-cmd vmsvc/getallvms | grep "/${vmxname}.vmx" | awk '$1 ~ /^[0-9]+$/ {print $1}')
@@ -35,4 +35,5 @@ echo "$(date): $0 ${esxiuser}@${esxihost} vmx=${vmxname}.vmx"
 for guestvmid in $guestvmids; do
   shutdown_guest_vm "$guestvmid"
 done
+set +x
 

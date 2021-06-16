@@ -7,7 +7,7 @@
 #                 ESXI STOP ALL DATASTORE VMS [./stop-all-datastore-vms.sh]
 #────────────────────────────────────────────────────────────
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 1 ]; then
   echo "$0: error! Not enough arguments"
   echo "Usage is: $0 user_id esxi_host_name datastore_name"
   exit 1
