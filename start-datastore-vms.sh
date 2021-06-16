@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #  ▄▄▄▄· • ▌ ▄ ·. ▪  ▄▄▌   ▄▄· .▄▄ ·   ──────────────────────
 #  ▐█ ▀█▪·██ ▐███▪██ ██•  ▐█ ▌▪▐█ ▀.   ╔╦╗╔═╗╔╦╗╔═╗╦╦  ╔═╗╔═╗
 #  ▐█▀▀█▄▐█ ▌▐▌▐█·▐█·██ ▪ ██ ▄▄▄▀▀▀█▄   ║║║ ║ ║ ╠╣ ║║  ║╣ ╚═╗
@@ -7,20 +7,14 @@
 #                 ESXI START DATASTORE VMS [./start-datastore-vms.sh]
 #────────────────────────────────────────────────────────────
 
-mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-. "$mypath"/config
+# source config vars
+
+. "$(dirname "$(realpath "$0")")"/config
 
 # variables
+
 logfile="${logdir}/start-datastore-vms.log"
 waitdelay=30
-
-# begin
-echo "[ start datastore vms ]"
-echo "-----------------------"
-
-echo "---[ delay: $waitdelay seconds before starting" \
-  | tee "$logfile"
-sleep $waitdelay
 
 VMs=(
 Arch
@@ -39,6 +33,17 @@ UNMS
 Vault
 vCenter
 )
+
+
+# header & delay
+
+echo "[ start datastore vms ]"
+echo "-----------------------"
+
+echo "---[ delay: $waitdelay seconds before starting" \
+  | tee "$logfile"
+sleep $waitdelay
+
   
 for vm in "${VMs[@]}"; do
   echo "---[ starting: $vm" | tee "$logfile"
