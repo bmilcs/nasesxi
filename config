@@ -12,7 +12,7 @@ freenashost=$(hostname -s)
 esxiuser="root"
 esxihost="esxi"
 datastores="ESXI NVR"
-logdir="$mypath/logs/"
+logdir="$mypath/logs"
 mkdir -p "$logdir"
 
 # record keeping:
@@ -41,6 +41,7 @@ fi
 
 _t() {
   echo -e "debug: logfile = $logfile"
+  echo -e "------------------------------" | tee "$logfile"
   echo -e "-[   "$*"   ]-" | tee "$logfile"
   echo -e "------------------------------" | tee "$logfile"
   }
