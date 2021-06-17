@@ -22,8 +22,7 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
-mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-. "$mypath"/config
+mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
 
 set -x
 vmxname=$1

@@ -4,47 +4,43 @@
 #  ▐█▀▀█▄▐█ ▌▐▌▐█·▐█·██ ▪ ██ ▄▄▄▀▀▀█▄   ║║║ ║ ║ ╠╣ ║║  ║╣ ╚═╗
 #  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
 #  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
+
 #                 ESXI START DATASTORE VMS [./start-datastore-vms.sh]
-#────────────────────────────────────────────────────────────
 
-# source config vars
+#──────────────────────────────────────────────────────────  var/array  ───────
 
-. "$(dirname "$(realpath "$0")")"/config
-
-# variables
+mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
 
 logfile="${logdir}/start-datastore-vms.log"
 waitdelay=30
 
 VMs=(
-Arch
-Backup
-Cloud
-DC1
-Debian
-Docker
-Guacamole
-kPi
-MPD
-mPi
-Plex
-Security
-UNMS
-Vault
-vCenter
+  "Arch"
+  "Backup"
+  "Cloud"
+  "DC1"
+  "Debian"
+  "Docker"
+  "Guacamole"
+  "kPi"
+  "MPD"
+  "mPi"
+  "Plex"
+  "Security"
+  "UNMS"
+  "Vault"
+  "vCenter"
 )
 
 
-# header & delay
+#──────────────────────────────────────────────────────────────  begin  ───────
 
-echo "[ start datastore vms ]"
-echo "-----------------------"
+_t start datastore vms
 
-echo "---[ delay: $waitdelay seconds before starting" \
-  | tee "$logfile"
+_a "- waitdelay: $waitdelay seconds before starting" \
+  
 sleep $waitdelay
 
-  
 for vm in "${VMs[@]}"; do
   echo "---[ starting: $vm" | tee "$logfile"
   "$mypath"/start-vm.sh "$vm" >> "$logfile"

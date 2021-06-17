@@ -16,8 +16,7 @@ fi
 #────────────────────────────────────────────────────────────────  var  ───────
 
 
-mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-. "$mypath"/config
+mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
 
 esxidatastore=$1
 

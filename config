@@ -5,8 +5,7 @@
 #  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
 #                 ESXI VARIABLES & CONFIG [./esxi.config]
 
-# script path
-mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
+mypath="$(dirname "$(realpath "$0")")"
 
 # core vars
 freenashost=$(hostname -s)
@@ -39,6 +38,18 @@ maxwait=$((waitretries*waitdelay))
 if [ $dryrun -ne 0 ]; then
   waitretries=1
 fi
+
+#──────────────────────────────────────────────────────────  functions  ───────
+
+_t() {
+  echo "-[   "$*"   ]-" | tee "$logfile"
+  echo "------------------------------" | tee "$logfile"
+  }
+
+_a() {
+  echo "\n[ $1" | tee "$logfile"
+  echo "------------------------------" | tee "$logfile"
+}
 
 
 #──────────────────────────────────────────────────────────  functions  ───────

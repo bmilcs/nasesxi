@@ -5,11 +5,12 @@
 #  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
 #  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
 #                 ESXI STARTUP SCRIPT [./startup-script.sh]
-#────────────────────────────────────────────────────────────
 
-mypath="$( cd -- "$(dirname "")" >/dev/null 2>&1 ; pwd -P )"
-set -x
+#────────────────────────────────────────────────────────────────  var  ───────
+
+mypath="$(dirname "$(realpath "$0")")"
+
+#──────────────────────────────────────────────────────────────  begin  ───────
+
 "$mypath"/rescan-datastores.sh
 "$mypath"/start-datastore-vms.sh
-set +x
-
