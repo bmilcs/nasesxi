@@ -7,6 +7,6 @@
 #                 ESXI SHUTDOWN [./shutdown-script.sh]
 #────────────────────────────────────────────────────────────
 
-mypath="$(dirname "$(realpath "$0")")"
+mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
 "$mypath"/stop-all-vms.sh
 

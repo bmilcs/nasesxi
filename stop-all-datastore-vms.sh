@@ -7,17 +7,16 @@
 #                 ESXI STOP ALL DATASTORE VMS [./stop-all-datastore-vms.sh]
 #────────────────────────────────────────────────────────────
 
+#────────────────────────────────────────────────────────────────  var  ───────
+
+mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
+esxidatastore=$1
+
 if [ $# -ne 1 ]; then
   _e "$0: error! Not enough arguments"
   _e "Usage is: $0 user_id esxi_host_name datastore_name"
   exit 1
 fi
-
-#────────────────────────────────────────────────────────────────  var  ───────
-
-mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
-
-esxidatastore=$1
 
 #──────────────────────────────────────────────────────────────  begin  ───────
 
