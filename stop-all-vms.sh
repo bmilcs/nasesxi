@@ -5,9 +5,8 @@
 #  ██▄▪▐███ ██▌▐█▌▐█▌▐█▌ ▄▐███▌▐█▄▪▐█  ═╩╝╚═╝ ╩ ╚  ╩╩═╝╚═╝╚═╝
 #  ·▀▀▀▀ ▀▀  █▪▀▀▀▀▀▀.▀▀▀ ·▀▀▀  ▀▀▀▀   https://dot.bmilcs.com
 #                 ESXI STOP ALL VMS [./stop-all-vms.sh]
-#────────────────────────────────────────────────────────────
 
-# gracefully powers down all guest virtual machines in the freenas datastores
+# graceful shutdown all vm's (freenas datastores only)
 
 
 mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"

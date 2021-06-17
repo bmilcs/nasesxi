@@ -11,8 +11,6 @@ mypath="$(dirname "$(realpath "$0")")"
 freenashost=$(hostname -s)
 esxiuser="root"
 esxihost="esxi"
-esxihost=esxi
-esxiuser=root
 datastores="ESXI NVR"
 logdir="$mypath/logs/"
 mkdir -p "$logdir"

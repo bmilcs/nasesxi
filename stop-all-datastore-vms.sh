@@ -15,7 +15,6 @@ fi
 
 #────────────────────────────────────────────────────────────────  var  ───────
 
-
 mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
 
 esxidatastore=$1
