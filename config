@@ -40,13 +40,13 @@ fi
 #──────────────────────────────────────────────────────────  functions  ───────
 
 _t() {
-  echo "-[   "$*"   ]-" | tee "$logfile"
-  echo "------------------------------" | tee "$logfile"
+  echo -e "debug: logfile = $logfile"
+  echo -e "-[   "$*"   ]-" | tee "$logfile"
+  echo -e "------------------------------" | tee "$logfile"
   }
 
 _a() {
-  echo "\n[ $1" | tee "$logfile"
-  echo "------------------------------" | tee "$logfile"
+  echo -e "\n[ $1 ]" | tee "$logfile"
 }
 
 
