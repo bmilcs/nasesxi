@@ -13,10 +13,10 @@ mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
 
 logfile="${logdir}"/esxi-stop-all-vms.log
 
-echo "$(date): Shut down virtual machines on ESXi host ${esxihost}, FreeNAS server ${freenashost}" | tee ${logfile}
+_t "shutdown/stop vm's"
 _a "datastores: $datastores"
 
 for datastore in $datastores; do
-  "$mypath"/stop-all-datastore-vms.sh root "${esxihost}" "${datastore}" >> "${logfile}"
+  "$mypath"/stop-all-datastore-vms.sh root "${esxihost}" "${datastore}" | tee -a "${logfile}"
 done
 
