@@ -19,7 +19,7 @@ vmxname=$1
 guestvmids=$(ssh "${esxiuser}"@"${esxihost}" vim-cmd vmsvc/getallvms \
   | grep "/${vmxname}.vmx" | awk '$1 ~ /^[0-9]+$/ {print $1}')
 
-echo "$(date): $0 ${esxiuser}@${esxihost} vmx=${vmxname}.vmx"
+_e "$(date): $0 ${esxiuser}@${esxihost} vmx=${vmxname}.vmx"
 
 for guestvmid in $guestvmids; do
   shutdown_guest_vm "$guestvmid"

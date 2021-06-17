@@ -13,7 +13,7 @@ mypath="$(dirname "$(realpath "$0")")" ; . "$mypath/config"
 
 logfile="${logdir}"/esxi-stop-all-vms.log
 
-_t "shutdown/stop vm's"
+_t "shutdown/stop all vm's"
 _a "datastores: $datastores"
 
 for datastore in $datastores; do

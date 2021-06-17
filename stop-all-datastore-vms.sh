@@ -8,8 +8,8 @@
 #────────────────────────────────────────────────────────────
 
 if [ $# -ne 1 ]; then
-  echo "$0: error! Not enough arguments"
-  echo "Usage is: $0 user_id esxi_host_name datastore_name"
+  _e "$0: error! Not enough arguments"
+  _e "Usage is: $0 user_id esxi_host_name datastore_name"
   exit 1
 fi
 
@@ -21,11 +21,11 @@ esxidatastore=$1
 
 #──────────────────────────────────────────────────────────────  begin  ───────
 
-echo "$(date): $0 ${esxiuser}@${esxihost} datastore=${esxidatastore} (max wait time=${maxwait}s"
-echo "Full list of VM guests on this server:"
+_e "$(date): $0 ${esxiuser}@${esxihost} datastore=${esxidatastore} (max wait time=${maxwait}s"
+_e "Full list of VM guests on this server:"
 ssh "${esxiuser}"@"${esxihost}" vim-cmd vmsvc/getallvms
 
-echo "VM guests on datastore ${esxidatastore}:"
+_e "VM guests on datastore ${esxidatastore}:"
 ssh "${esxiuser}"@"${esxihost}" vim-cmd vmsvc/getallvms | grep "\[${esxidatastore}\]"
 
 # Get server IDs for all VMs stored on the indicated datastore. These IDs change between
@@ -41,8 +41,9 @@ for guestvmid in $guestvmids; do
   shutdown_guest_vm "$guestvmid"
 done
 
-echo "Found ${totalvms} virtual machine guests on ${esxihost} datastore ${esxidatastore}"
-echo "   Total shut down: ${totalvmsshutdown}" 
-echo "Total powered down: ${totalvmspowereddown}" 
-echo "$(date): $0 completed"
+_a "results:"
+_e "Found ${totalvms} virtual machine guests on ${esxihost} datastore ${esxidatastore}"
+_e "   Total shut down: ${totalvmsshutdown}" 
+_e "Total powered down: ${totalvmspowereddown}" 
+_e "$(date): $0 completed"
 
