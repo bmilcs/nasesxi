@@ -39,29 +39,27 @@ fi
 
 #──────────────────────────────────────────────────────────  functions  ───────
 
-
-
 _e() {
   echo -e "$*" | tee -a "$logfile"
-}
-
+  }
 
 _t() {
-  _e "debug: logfile = $logfile"
   _e "--------------------------------------------------"
   _e "-[   "$*"   ]-    
   _e "--------------------------------------------------"
+  _e "log: $logfile"
   }
 
 _a() {
-  _e "\n---[ $1 ]--- $(date +%H.%M.%S [%Y.%m.%d])"
+  _e "\n---[ $1 ]--- $(date +%H.%M.%S--%Y.%m.%d)"
+  _e "log: $logfile"
 }
-
 
 #──────────────────────────────────────────────────────────  functions  ───────
 
 shutdown_guest_vm()
 {
+  
   l_try=0
 
   ssh "${esxiuser}"@"${esxihost}" vim-cmd vmsvc/power.getstate $1 | grep -i "off" > /dev/null 2<&1
