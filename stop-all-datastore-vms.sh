@@ -40,9 +40,9 @@ for guestvmid in $guestvmids; do
   shutdown_guest_vm "$guestvmid"
 done
 
-_a "results:"
-_e "Found ${totalvms} virtual machine guests on ${esxihost} datastore ${esxidatastore}"
-_e "   Total shut down: ${totalvmsshutdown}" 
-_e "Total powered down: ${totalvmspowereddown}" 
+#_a "results:"
+#_e "Found ${totalvms} virtual machine guests on ${esxihost} datastore ${esxidatastore}"
+#_e "   Total shut down: ${totalvmsshutdown}" 
+#_e "Total powered down: ${totalvmspowereddown}" 
 _e "$(date): $0 completed"
 
