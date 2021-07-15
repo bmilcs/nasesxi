@@ -17,6 +17,6 @@ _t "shutdown/stop all vm's"
 _a "datastores: $datastores"
 
 for datastore in $datastores; do
-  "$mypath"/stop-all-datastore-vms.sh root "${esxihost}" "${datastore}" | tee -a "${logfile}"
+  "$mypath"/stop-all-datastore-vms.sh "${datastore}" | tee -a "${logfile}"
 done
 
